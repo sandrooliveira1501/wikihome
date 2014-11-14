@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/30/trunk/src/br/ufc/quixada/dao
+END
+GenericJPADao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4/trunk/src/br/ufc/quixada/dao/GenericJPADao.java
+END
+GenericDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/4/trunk/src/br/ufc/quixada/dao/GenericDao.java
+END
+ComentarioJPADao.java
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/4/trunk/src/br/ufc/quixada/dao/ComentarioJPADao.java
+END
+LocalDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/29/trunk/src/br/ufc/quixada/dao/LocalDao.java
+END
+UsuarioJPADao.java
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/30/trunk/src/br/ufc/quixada/dao/UsuarioJPADao.java
+END
+UsuarioDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/30/trunk/src/br/ufc/quixada/dao/UsuarioDao.java
+END
+LocalJPADao.java
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/29/trunk/src/br/ufc/quixada/dao/LocalJPADao.java
+END
+ComentarioDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/4/trunk/src/br/ufc/quixada/dao/ComentarioDao.java
+END

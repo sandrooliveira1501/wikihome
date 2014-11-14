@@ -1,0 +1,134 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="main">
+		<h:panelGrid columns="2">
+			<h:graphicImage library="images" name="WikiHome.png"
+				width="450" />
+			<h1 style="font-size: 55px; text-align: center; margin-left: 45px;">Sejam
+				bem vindos ao WikiHome!</h1>
+		</h:panelGrid>
+		<p style="font-size: 20px; text-align: justify; margin-top: 20px;">Por
+			ser um polo universitário, a cidade de Quixadá é uma constante opção
+			para jovens de todo o Ceará que desejam cursar algum curso de ensino
+			superior, com isso muitos desses jovens resolvem morar na cidade em
+			que estão estudando e com isso vem a constante procura por um lugar
+			onde morar. Neste caso pensamos em criar um Wiki onde alunos,
+			proprietários de imóveis e outros usuários, poderão marcar no mapa
+			não só da cidade de Quixadá mas também em diversas outras cidades,
+			mostrando lugares que estão disponíveis para aluguel.</p>
+		<hr />
+		<br />
+		
+			<ul>
+				 <li><h4><a href="#criarConta">Criando sua Conta</a></h4></li>
+				 <li><h4><a href="#marcarPonto">Marcando um Ponto</a></h4></li>
+				 <li><h4><a href="#pontos">Gerenciando Pontos Marcados</a></h4></li>
+			</ul>
+
+		<hr />
+		<br />
+		
+		<h1 style="text-align: left; font-size: 45px;"><a id="criarConta">Criando sua conta</a>
+		</h1>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Para se cadastrar o usuário deve clicar em login, 
+			em seguida no botão <i>Criar Conta</i> como mostrado na imagem.
+		</p>
+		<h:graphicImage library="images"
+			name="printsWiki/criandoConta/criandoconta1.png" />
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Em seguida o usuário deve preencher os seguintes campos: Seu Nome, Email e Senha.
+		</p>
+		<h:graphicImage library="images"
+			name="printsWiki/criandoConta/criandoconta2.png" />
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Após realizado estas atividades, o usuário poderá efetuar seu 
+			login usando seu email e sua senha cadastrada anteriormente.
+		</p>
+		<h:graphicImage library="images"
+			name="printsWiki/criandoConta/criandoconta3.png" />
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Ao logar pela primeira vez o usuário encontrará uma tela para preenchimento 
+			de algumas informações adicionais. Após preencher estas informações o usuário deve 
+			clicar em Salvar e pronto, você está devidamente cadastrado no WikiHome!
+		</p>
+		<h:graphicImage library="images"
+			name="printsWiki/criandoConta/criandoconta4.png" />
+		<h1 style="text-align: left; font-size: 45px; margin-top: 120px"><a id="marcarPonto">Marcando um ponto</a>
+		</h1>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Para marcar um local, o usuário deve clicar 
+			em <i>Marcar Local</i> no Menu Principal, como indicado na figura
+		</p>
+		<h:graphicImage library="images" name="printsWiki/marcarLocal/marcarLocal1.PNG"/>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Logo após, o usuário deve digitar o endereço do local 
+			que deseja marcar o apartamento ou casa, não 
+			esquecendo que deve levar o marcador do Google Maps até o 
+			local de interesse para efetivamente marcar o local de interesse.
+		</p>
+		<h:graphicImage library="images" name="printsWiki/marcarLocal/marcarLocal2.PNG"/>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Por fim, o usuário deve agora preencher os detalhes do local e clicar 
+			em salvar para concluir a marcação de um local.
+		</p>
+		<h:graphicImage library="images" name="printsWiki/marcarLocal/marcarLocal3.PNG"/>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Para fazer um comentário em um lugar marcado o usuário deve clicar no lugar marcado 
+			e depois clicar no seu endereço como apresentado na imagem abaixo:
+		</p>
+		<h:graphicImage library="images" name="printsWiki/marcarLocal/comentarLocal.PNG"/>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Em seguida aparecerá as informações do lugar clicado, e logo 
+			abaixo a sessão para comentários.<br/>
+			Obs:para realizar um comentário é necessário 
+			que o usuário esteja logado no facebook.
+		</p>
+		<h:graphicImage library="images" name="printsWiki/marcarLocal/comentarLocal1.PNG"/>
+		<h1 style="text-align: left; font-size: 45px; margin-top: 120px"><a id="pontos">Gerenciando pontos
+			marcados</a></h1>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Para abrir a sessão de gerenciamento de um lugar marcado, o usuário que 
+			marcou o lugar deve clicar em <i>Perfil</i> no menu principal e novamente 
+			na opção <i>perfil</i> como mostrado na imagem.
+		</p>
+		<h:graphicImage library="images" name="printsWiki/gerenciarLocal/gerenciarLocal.PNG"/>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Logo após o usuário deve clicar na opção 
+			<i>Gerenciar Pontos Marcados</i> como mostrado na imagem.
+		</p>
+		<h:graphicImage library="images" name="printsWiki/gerenciarLocal/gerenciarLocal1.PNG"/>
+		<p style="font-size: 20px; text-align: justify; margin-top: 30px;">
+			Em seguida a tela de gereciamento de pontos marcados será apresentada 
+			e o usuário pode remover o seu ponto marcado 
+			clicando no ícone de lixeira grifado na imagem a seguir.
+		</p>
+		<h:graphicImage library="images" name="printsWiki/gerenciarLocal/gerenciarLocal2.PNG"/>
+		<br />
+		<br />
+		<br />
+	</ui:define>
+
+	<ui:define name="footer">
+		<div class="navbar navbar-default navbar-fixed-bottom">
+			<div class="container">
+				<p class="navbar-text pull-left">
+					Desenvolvido por <a
+						href="https://www.facebook.com/AlexOliveiraAlexandrino"
+						target="_blank">Alex Oliveira</a>, <a
+						href="https://www.facebook.com/AlexsandroOliveiraAlexandrino"
+						target="_blank">Alexsandro Oliveira</a>, <a
+						href="https://www.facebook.com/araujofh" target="_blank">Araújo
+						Filho</a> e <a href="https://www.facebook.com/danrley.teixeira"
+						target="_blank">Danrley Teixeira</a>
+				</p>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

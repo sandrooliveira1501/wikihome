@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/36/trunk/src/br/ufc/quixada/controller
+END
+PerfilBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/22/trunk/src/br/ufc/quixada/controller/PerfilBean.java
+END
+LocalBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/29/trunk/src/br/ufc/quixada/controller/LocalBean.java
+END
+LoginBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/32/trunk/src/br/ufc/quixada/controller/LoginBean.java
+END
+RepositorioBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/27/trunk/src/br/ufc/quixada/controller/RepositorioBean.java
+END
+MarcarLocalBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/36/trunk/src/br/ufc/quixada/controller/MarcarLocalBean.java
+END
+ServletPontosMapa.java
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/34/trunk/src/br/ufc/quixada/controller/ServletPontosMapa.java
+END
+LoginAdmBean.java
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/6/trunk/src/br/ufc/quixada/controller/LoginAdmBean.java
+END

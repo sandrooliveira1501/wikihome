@@ -1,0 +1,131 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="main">
+		<div class="span7">
+			<div class="panel panel-black">
+				<div class="panel-heading">Perfil  - <h:link outcome="/user/local.xhtml"  >Gerenciar Pontos Marcados</h:link> </div>
+				<div class="panel-body">
+					<h:form>
+						<table class="table">
+							<tr>
+								<td><b>Nome</b></td>
+								<td><p:inplace id="inplaceNome" editor="true">
+										<p:inputText value="#{repositorioBean.usuario.nome}"
+											label="text" />
+									</p:inplace> <span class="glyphicon glyphicon-pencil"></span></td>
+							</tr>
+							<tr>
+								<td><b>E-mail</b></td>
+								<td><h:outputText value="#{repositorioBean.usuario.email}"
+										 label="text" /></td>
+							</tr>
+							<tr>
+								<td><b>Endereço</b></td>
+								<td><p:inplace id="inplaceEndereco" editor="true">
+										<p:inputText value="#{repositorioBean.usuario.endereco}"
+											label="text" />
+									</p:inplace> <span class="glyphicon glyphicon-pencil"></span></td>
+							</tr>
+							<tr>
+								<td><b>Cidade</b></td>
+								<td><p:inplace id="inplaceCidade" editor="true">
+										<p:inputText value="#{repositorioBean.usuario.cidade}"
+										 label="text" />
+									</p:inplace> <span class="glyphicon glyphicon-pencil"></span></td>
+							</tr>
+							<tr>
+								<td><b>Profissão</b></td>
+								<td><p:inplace id="inplaceProfissao" editor="true">
+										<p:inputText value="#{repositorioBean.usuario.profissao}"
+											label="text" />
+									</p:inplace> <span class="glyphicon glyphicon-pencil"></span></td>
+							</tr>
+							<tr>
+								<td><b>Instituição/Empresa</b></td>
+								<td><p:inplace id="inplaceEmpresa" editor="true">
+										<p:inputText value="#{repositorioBean.usuario.empresa}"
+											 label="text" />
+									</p:inplace> <span class="glyphicon glyphicon-pencil"></span></td>
+							</tr>
+						</table>
+						<hr />
+						<p:commandButton value="Salvar"
+							action="#{perfilBean.alterarPerfil}" />
+
+						<a data-toggle="modal" href="#modalSenha" class="btn btn-info"
+							id="alterarSenha">Alterar Senha</a>
+
+						<div class="modal fade" id="modalSenha" tabindex="-1"
+							role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">Wiki Apê</button>
+										<h4 class="modal-title">Alterar Senha!</h4>
+									</div>
+									<div class="modal-body">
+
+										<h:panelGrid columns="2" cellpadding="5">
+											<h:outputLabel for="senha_antiga" value="Senha Antiga:" style="margin-right:10px;"/>
+											<p:password value="#{perfilBean.usuario.senha}"
+												id="senha_antiga" label="username" style="margin-bottom:10px;"/>
+
+											<h:outputLabel for="nova_senha" value="Nova senha:" style="margin-right:10px;"/>
+											<p:password value="#{perfilBean.novaSenha}" id="nova_senha"
+												label="password" match="confirm_senha"
+												validatorMessage="Senhas não correspondem!" style="margin-bottom:10px;"/>
+
+											<h:outputLabel for="confirm_senha" value="Confirmar senha:" style="margin-right:10px;"/>
+											<p:password value="#{perfilBean.novaSenha}"
+												id="confirm_senha" style="margin-bottom:10px;"/>
+
+
+										</h:panelGrid>
+
+									</div>
+									<div class="modal-footer">
+										<h:commandLink class="btn btn-default" id="alterButton" value="Alterar"
+											action="#{perfilBean.alterarSenha}" />
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Fechar</button>
+									</div>
+								</div>
+								<!-- /.modal-content -->
+							</div>
+							<!-- /.modal-dialog -->
+						</div>
+
+					</h:form>
+				</div>
+			</div>
+
+			<p:messages id="messagesPerfil" showDetail="false" autoUpdate="true"
+				closable="true" />
+
+		</div>
+		<!-- 		<div class="span4">
+			<div id="mapa"
+				style="width: 300px; height: 300px margin-bottom: 20px;"></div>
+		</div>
+ -->
+	</ui:define>
+
+	<ui:define name="footer">
+		<div class="navbar navbar-default navbar-fixed-bottom">
+		<div class="container">
+			<p class="navbar-text pull-left">Desenvolvido por 
+					<a href="https://www.facebook.com/AlexOliveiraAlexandrino" target="_blank">Alex Oliveira</a>,
+					<a href="https://www.facebook.com/AlexsandroOliveiraAlexandrino" target="_blank">Alexsandro Oliveira</a>, 
+					<a href="https://www.facebook.com/araujofh" target="_blank">Araújo Filho</a> e 
+					<a href="https://www.facebook.com/danrley.teixeira" target="_blank">Danrley Teixeira</a></p>
+		</div>
+	</div>
+	</ui:define>
+
+</ui:composition>

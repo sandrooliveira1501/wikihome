@@ -1,0 +1,38 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="main">
+
+		<div class="span7">
+
+				<h:form class="form-horizontal">
+
+
+						<h:outputText value="E-mail : " />
+						<p:inputText value="#{loginBean.usuario.email}"  />
+						<hr />
+						<h:commandLink value="Enviar Solicitação" class="btn btn-primary"
+							action="#{loginBean.mudarSenha}" />
+
+
+				</h:form>
+
+		</div>
+	</ui:define>
+	<ui:define name="footer">
+		<div class="navbar navbar-default navbar-fixed-bottom">
+			<div class="container">
+				<p class="navbar-text pull-left">Desenvolvido por 
+					<a href="https://www.facebook.com/AlexOliveiraAlexandrino" target="_blank">Alex Oliveira</a>,
+					<a href="https://www.facebook.com/AlexsandroOliveiraAlexandrino" target="_blank">Alexsandro Oliveira</a>, 
+					<a href="https://www.facebook.com/araujofh" target="_blank">Araújo Filho</a> e 
+					<a href="https://www.facebook.com/danrley.teixeira" target="_blank">Danrley Teixeira</a></p>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

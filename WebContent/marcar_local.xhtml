@@ -1,0 +1,116 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="main">
+		<h:form id="formMaps">
+
+			<div class="campos">
+				<label for="txtEndereco">Endereço:</label> <input type="text"
+					id="txtEndereco" name="txtEndereco" /> <input type="button"
+					id="btnEndereco" name="btnEndereco" value="Mostrar no mapa" />
+			</div>
+
+			<fieldset>
+
+				<div id="mapa"></div>
+
+				<h:inputHidden id="txtLatitude"
+					value="#{marcarLocalBean.local.latitude}" />
+				<h:inputHidden id="txtLongitude"
+					value="#{marcarLocalBean.local.longitude}" />
+				<h:inputHidden id="txtEndereco"
+					value="#{marcarLocalBean.local.endereco}" />
+
+				<div style="text-align: center; margin-bottom: 50px">
+					<a data-toggle="modal" href="#modalLocal" class="btn btn-marcar"
+						id="opcoesLocal">Marcar Ponto</a>						
+				</div>
+
+				<div class="modal fade" id="modalLocal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">WikiHome</button>
+								<h4 class="modal-title">Detalhes do Local!</h4>
+							</div>
+							<div class="modal-body">
+								<h:panelGrid columns="2">
+									<h:outputLabel value="Tipo:" for="tipo" />
+									<h:selectOneMenu class="form-control"
+										style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.tipo}" id="tipo">
+										<f:selectItem itemValue="Apartamento" itemLabel="Apartamento"/>
+										<f:selectItem itemValue="Casa" itemLabel="Casa" />
+										<f:selectItem itemValue="Condomínio" itemLabel="Condomínio" />
+									</h:selectOneMenu>
+									<h:outputLabel value="Preço médio:" for="preco" />
+									<h:inputText style="margin-left:10px; margin-bottom:10px;"
+										class="form-control" id="preco" required="false" value="#{marcarLocalBean.local.preco}">
+										<f:convertNumber currencyCode="BRL" minFractionDigits="2" locale="pt-BR" />
+									</h:inputText>
+									
+									<h:outputLabel value="Quantidade de quartos:" for="qtdQuartos" />
+									<h:inputText style="margin-left:10px; margin-bottom:10px;"
+										class="form-control" id="qtdQuartos" required="false" value="#{marcarLocalBean.local.qtdQuartos}" />
+									
+									<h:outputLabel value="Banheiros:" for="banheiros" />
+									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.banheiros}"
+										class="form-control" id="banheiros" required="false" />
+									
+									<h:outputLabel value="Garagem:" for="garagem" />
+									<h:selectOneRadio style="margin-left:10px;" value="#{marcarLocalBean.local.garagem}" id="garagem">
+										<f:selectItem itemValue="true" itemLabel="Sim"/>
+										<f:selectItem itemValue="false" itemLabel="Não" />
+									</h:selectOneRadio>
+									
+									<h:outputLabel value="Quintal:" for="quintal" />	
+									<h:selectOneRadio style="margin-left:10px;" value="#{marcarLocalBean.local.quintal}" id="quintal" >
+										<f:selectItem itemValue="true" itemLabel="Sim"/>
+										<f:selectItem itemValue="false" itemLabel="Não" />
+									</h:selectOneRadio>
+									
+									<h:outputLabel value="E-mail para Contato:" for="emailContato" />
+									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.emailContato}"
+										class="form-control" id="emailContato" required="false" />
+									
+									<h:outputLabel value="Telefone:" for="telefone" />
+									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.telefoneContato}"
+										class="form-control" id="telefone" required="false" />
+									
+								</h:panelGrid>
+							</div>
+							<div class="modal-footer">
+								<h:commandLink class="btn btn-default" id="alterButton"
+									value="Salvar" action="#{marcarLocalBean.adicionarLocal}" />
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Fechar</button>
+							</div>
+						</div>
+						<!-- /.modal-content -->
+					</div>
+					<!-- /.modal-dialog -->
+				</div>
+
+
+			</fieldset>
+
+		</h:form>
+	</ui:define>
+
+	<ui:define name="footer">
+		<div class="navbar navbar-default navbar-fixed-bottom">
+			<div class="container">
+				<p class="navbar-text pull-left">Desenvolvido por 
+					<a href="https://www.facebook.com/AlexOliveiraAlexandrino" target="_blank">Alex Oliveira</a>,
+					<a href="https://www.facebook.com/AlexsandroOliveiraAlexandrino" target="_blank">Alexsandro Oliveira</a>, 
+					<a href="https://www.facebook.com/araujofh" target="_blank">Araújo Filho</a> e 
+					<a href="https://www.facebook.com/danrley.teixeira" target="_blank">Danrley Teixeira</a></p>
+			</div>
+		</div>
+	</ui:define>
+
+</ui:composition>

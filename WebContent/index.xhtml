@@ -1,0 +1,67 @@
+<ui:composition template="/WEB-INF/template/template.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="main">
+		<h:form id="formMaps">
+
+			<h:inputHidden id="latitude" value="-4.9684385" />
+			<h:inputHidden id="longitude" value="-39.01612590000002" />
+
+			<div id="mapa"></div>
+			<div align="center">
+				<script>
+					(function(d, s, id) {
+						var js, fjs = d.getElementsByTagName(s)[0];
+						if (d.getElementById(id))
+							return;
+						js = d.createElement(s);
+						js.id = id;
+						js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v2.0";
+						fjs.parentNode.insertBefore(js, fjs);
+					}(document, 'script', 'facebook-jssdk'));
+				</script>
+				<div class="fb-like" data-href="http://wikihome.besaba.com"
+					data-layout="button_count" data-action="like"
+					data-show-faces="false" data-share="true"></div>
+				<h4 style="margin-top: 20px; margin-bottom: 70px">Está tendo dificuldades para usar o WikiHome? Clique 
+					<h:link value="aqui" outcome="/sobre"/></h4>
+			</div>
+
+		</h:form>
+
+		<!-- Maps API Javascript -->
+		<script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+
+		<!-- Caixa de informação -->
+		<script src="resources_maps/infobox.js"></script>
+
+		<!-- Agrupamento dos marcadores -->
+		<script src="resources_maps/markerclusterer.js"></script>
+
+		<!-- Arquivo de inicialização do mapa -->
+		<script src="resources_maps/mapa_index.js"></script>
+
+	</ui:define>
+
+	<ui:define name="footer">
+		<div class="navbar navbar-default navbar-fixed-bottom">
+			<div class="container">
+				<p class="navbar-text pull-left">
+					Desenvolvido por <a
+						href="https://www.facebook.com/AlexOliveiraAlexandrino"
+						target="_blank">Alex Oliveira</a>, <a
+						href="https://www.facebook.com/AlexsandroOliveiraAlexandrino"
+						target="_blank">Alexsandro Oliveira</a>, <a
+						href="https://www.facebook.com/araujofh" target="_blank">Araújo
+						Filho</a> e <a href="https://www.facebook.com/danrley.teixeira"
+						target="_blank">Danrley Teixeira</a>
+				</p>
+			</div>
+		</div>
+
+	</ui:define>
+
+</ui:composition>
