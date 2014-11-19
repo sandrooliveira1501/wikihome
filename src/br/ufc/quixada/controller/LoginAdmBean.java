@@ -5,7 +5,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.dao.UsuarioDao;
-import br.ufc.quixada.dao.UsuarioJPADao;
+import br.ufc.quixada.dao.jpa.UsuarioJPADao;
 import br.ufc.quixada.model.Usuario;
 import br.ufc.quixada.util.SenhaCriptografada;
 

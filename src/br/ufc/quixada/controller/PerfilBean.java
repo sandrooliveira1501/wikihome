@@ -8,7 +8,7 @@ import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.dao.UsuarioDao;
-import br.ufc.quixada.dao.UsuarioJPADao;
+import br.ufc.quixada.dao.jpa.UsuarioJPADao;
 import br.ufc.quixada.model.Usuario;
 
 @ManagedBean

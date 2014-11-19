@@ -1,10 +1,11 @@
-package br.ufc.quixada.dao;
+package br.ufc.quixada.dao.jpa;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Query;
 
+import br.ufc.quixada.dao.LocalDao;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
 

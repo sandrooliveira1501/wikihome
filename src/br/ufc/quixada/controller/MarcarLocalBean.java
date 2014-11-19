@@ -8,9 +8,9 @@ import javax.faces.context.Flash;
 import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.dao.LocalDao;
-import br.ufc.quixada.dao.LocalJPADao;
 import br.ufc.quixada.dao.UsuarioDao;
-import br.ufc.quixada.dao.UsuarioJPADao;
+import br.ufc.quixada.dao.jpa.LocalJPADao;
+import br.ufc.quixada.dao.jpa.UsuarioJPADao;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
 

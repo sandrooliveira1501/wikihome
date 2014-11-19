@@ -10,6 +10,5 @@ public interface GenericDao<T> {
 	public void commit();
 	public void rollback();
 	public void close();
-	public boolean transactionActive();
 	
 }

@@ -1,10 +1,11 @@
-package br.ufc.quixada.dao;
+package br.ufc.quixada.dao.jpa;
 
 import java.util.Random;
 
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
+import br.ufc.quixada.dao.UsuarioDao;
 import br.ufc.quixada.model.Usuario;
 
 public class UsuarioJPADao extends GenericJPADao<Usuario> implements UsuarioDao {

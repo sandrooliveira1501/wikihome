@@ -1,7 +1,8 @@
-package br.ufc.quixada.dao;
+package br.ufc.quixada.dao.jpa;
 
 import javax.persistence.EntityManager;
 
+import br.ufc.quixada.dao.GenericDao;
 import br.ufc.quixada.util.JPAUtil;
 
 public class GenericJPADao<T> implements GenericDao<T> {
@@ -54,11 +55,6 @@ public class GenericJPADao<T> implements GenericDao<T> {
 		JPAUtil.close();
 	}
 	
-	@Override
-	public boolean transactionActive() {
-		return em.getTransaction().isActive();
-	}
-
 	
 	
 }
