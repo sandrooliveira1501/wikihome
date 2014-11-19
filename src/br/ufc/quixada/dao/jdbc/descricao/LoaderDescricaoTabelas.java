@@ -23,7 +23,7 @@ public class LoaderDescricaoTabelas {
 
 		DescricaoTabela descricaoTabela2 = 
 				new DescricaoTabela("br.ufc.quixada.model.Local", "local", "id","id", "latitude", "longitude","banheiros",
-						"garagem", "preco","qtdApartamentos","qtdQuartos","quintal","telefoneContato");
+						"garagem", "preco","qtdApartamentos","qtdQuartos","quintal","telefoneContato","endereco");
 		ChaveEstrangeira chave = new ChaveEstrangeira();
 		chave.setNomeAtributo("usuario");
 		chave.setNomeChave("is_usuario");

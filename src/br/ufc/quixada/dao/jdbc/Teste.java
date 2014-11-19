@@ -1,7 +1,11 @@
 package br.ufc.quixada.dao.jdbc;
 
+import java.util.List;
+
+import br.ufc.quixada.dao.LocalDao;
 import br.ufc.quixada.dao.UsuarioDao;
 import br.ufc.quixada.dao.jdbc.daoimpl.GenericJDBCDao;
+import br.ufc.quixada.dao.jdbc.daoimpl.LocalJDBCDAO;
 import br.ufc.quixada.dao.jdbc.daoimpl.UsuarioJDBCDAO;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
@@ -9,7 +13,7 @@ import br.ufc.quixada.model.Usuario;
 public class Teste {
 	
 	public static void main(String[] args) {
-		Usuario usuario;
+		/*Usuario usuario;
 		
 		UsuarioDao udao = new UsuarioJDBCDAO();
 		//usuario = udao.find(1);
@@ -28,7 +32,15 @@ public class Teste {
 		//dao.save(local);
 		
 		local= dao.find(1000);
-		System.out.println(local.getUsuario());
+		System.out.println(local.getUsuario());*/
+		
+		LocalDao dao = new LocalJDBCDAO();
+		Usuario usuario = new Usuario();
+		usuario.setIdUsuario(1);
+		List<Local> locais = dao.getLocalPorUsuario(usuario);
+		System.out.println(locais);
+				
+		
 	}
 
 }
