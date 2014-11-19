@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+	<List>
+
+		<DescricaoTabela>
+			<nome>br.ufc.quixada.model.Usuario</nome>
+			<nomeTabela>Usuario</nomeTabela>
+			<colunaChave>idUsuario</colunaChave>
+			<colunas>
+				<String>email</String>
+				<String>senha</String>
+				<String>adm</String>
+				<String>senhaTemporaria</String>
+			</colunas>
+			
+		</DescricaoTabela>
+
+	</List>
+	
