@@ -11,6 +11,7 @@ import br.ufc.quixada.dao.LocalDao;
 import br.ufc.quixada.dao.UsuarioDao;
 import br.ufc.quixada.dao.jdbc.LocalJDBCDAO;
 import br.ufc.quixada.dao.jdbc.UsuarioJDBCDAO;
+import br.ufc.quixada.model.DescricaoLocal;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
 
@@ -21,16 +22,18 @@ public class MarcarLocalBean {
 	@ManagedProperty(value = "#{repositorioBean}")
 	private RepositorioBean repositorio;
 
+	
+	public MarcarLocalBean() {
+		this.local = new Local();
+		this.local.setDescricao(new DescricaoLocal());
+	}
+
 	public Local getLocal() {
 		return local;
 	}
 
 	public void setLocal(Local local) {
 		this.local = local;
-	}
-
-	public MarcarLocalBean() {
-		this.local = new Local();
 	}
 
 	public RepositorioBean getRepositorio() {

@@ -17,7 +17,6 @@ public class Email{
 	public static final String senhaAltorizacao = "danrleygay";
 
 	public static void enviarEmail(String remetente, String destinatario, String assunto, String mensagem){
-		
 		Properties props = new Properties();
 		
 		props.put("mail.smtp.host", "smtp.gmail.com");

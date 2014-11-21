@@ -42,43 +42,43 @@
 								<h:panelGrid columns="2">
 									<h:outputLabel value="Tipo:" for="tipo" />
 									<h:selectOneMenu class="form-control"
-										style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.tipo}" id="tipo">
+										style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.descricao.tipo}" id="tipo">
 										<f:selectItem itemValue="Apartamento" itemLabel="Apartamento"/>
 										<f:selectItem itemValue="Casa" itemLabel="Casa" />
 										<f:selectItem itemValue="Condomínio" itemLabel="Condomínio" />
 									</h:selectOneMenu>
 									<h:outputLabel value="Preço médio:" for="preco" />
 									<h:inputText style="margin-left:10px; margin-bottom:10px;"
-										class="form-control" id="preco" required="false" value="#{marcarLocalBean.local.preco}">
+										class="form-control" id="preco" required="false" value="#{marcarLocalBean.local.descricao.preco}">
 										<f:convertNumber currencyCode="BRL" minFractionDigits="2" locale="pt-BR" />
 									</h:inputText>
 									
 									<h:outputLabel value="Quantidade de quartos:" for="qtdQuartos" />
 									<h:inputText style="margin-left:10px; margin-bottom:10px;"
-										class="form-control" id="qtdQuartos" required="false" value="#{marcarLocalBean.local.qtdQuartos}" />
+										class="form-control" id="qtdQuartos" required="false" value="#{marcarLocalBean.local.descricao.qtdQuartos}" />
 									
 									<h:outputLabel value="Banheiros:" for="banheiros" />
-									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.banheiros}"
+									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.descricao.banheiros}"
 										class="form-control" id="banheiros" required="false" />
 									
 									<h:outputLabel value="Garagem:" for="garagem" />
-									<h:selectOneRadio style="margin-left:10px;" value="#{marcarLocalBean.local.garagem}" id="garagem">
+									<h:selectOneRadio style="margin-left:10px;" value="#{marcarLocalBean.local.descricao.garagem}" id="garagem">
 										<f:selectItem itemValue="true" itemLabel="Sim"/>
 										<f:selectItem itemValue="false" itemLabel="Não" />
 									</h:selectOneRadio>
 									
 									<h:outputLabel value="Quintal:" for="quintal" />	
-									<h:selectOneRadio style="margin-left:10px;" value="#{marcarLocalBean.local.quintal}" id="quintal" >
+									<h:selectOneRadio style="margin-left:10px;" value="#{marcarLocalBean.local.descricao.quintal}" id="quintal" >
 										<f:selectItem itemValue="true" itemLabel="Sim"/>
 										<f:selectItem itemValue="false" itemLabel="Não" />
 									</h:selectOneRadio>
 									
 									<h:outputLabel value="E-mail para Contato:" for="emailContato" />
-									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.emailContato}"
+									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.descricao.emailContato}"
 										class="form-control" id="emailContato" required="false" />
 									
 									<h:outputLabel value="Telefone:" for="telefone" />
-									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.telefoneContato}"
+									<h:inputText style="margin-left:10px; margin-bottom:10px;" value="#{marcarLocalBean.local.descricao.telefoneContato}"
 										class="form-control" id="telefone" required="false" />
 									
 								</h:panelGrid>

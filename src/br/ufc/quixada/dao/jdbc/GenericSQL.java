@@ -1,6 +1,5 @@
 package br.ufc.quixada.dao.jdbc;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import br.ufc.quixada.config.ChaveEstrangeira;
@@ -10,7 +9,7 @@ import br.ufc.quixada.config.LoaderDescricaoTabelas;
 public class GenericSQL {
 
 	public String getSqlSave(DescricaoTabela descricaoTabela) {
-
+		
 		StringBuilder sql = new StringBuilder();
 		List<String> colunas = descricaoTabela.getColunas();
 		List<ChaveEstrangeira> chavesEstrangeiras = descricaoTabela

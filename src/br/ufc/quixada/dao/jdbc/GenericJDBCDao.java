@@ -12,6 +12,7 @@ import br.ufc.quixada.config.DescricaoTabela;
 import br.ufc.quixada.config.FuncoesReflection;
 import br.ufc.quixada.config.LoaderDescricaoTabelas;
 import br.ufc.quixada.dao.GenericDao;
+import br.ufc.quixada.dao.jdbc.exception.ErroAoExecutarOperacaoException;
 
 public class GenericJDBCDao<T> implements GenericDao<T> {
 
@@ -33,7 +34,13 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 
 	@Override
 	public void save(T entity) {
-
+		saveId(entity);
+	}
+	
+	protected int saveId(T entity){
+		
+		int chaveGerada = -1;
+		PreparedStatement statement = null;
 		try {
 			Class classEntidade = entity.getClass();
 			String sql = genericSQL.getSqlSave(descricaoTabela);
@@ -42,7 +49,7 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 			List<ChaveEstrangeira> chavesEstrangeiras = descricaoTabela
 					.getChavesEstrangeiras();
 
-			PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
+			statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			int index = 1;
 			FuncoesReflection reflection = new FuncoesReflection();
 
@@ -65,31 +72,35 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 				index++;
 			}
 
-			/*ResultSet keyResultSet = statement.getGeneratedKeys();
-	        if (keyResultSet.next()) {
-	        	int idEntidade = (int) keyResultSet.getInt(1);
-	        	System.out.println(idEntidade);
-	        }*/
-			System.out.println(statement);
 			statement.execute();
-			statement.close();
-
+			ResultSet keyResultSet = statement.getGeneratedKeys();
+			if (keyResultSet.next()) {
+				chaveGerada = (int) keyResultSet.getInt(1);
+			}
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Inserir entidade", e.getMessage());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			throw new ErroAoExecutarOperacaoException("Buscar Entidade - Erro de mapeamento", e.getMessage());			
+		}finally{
+			try {
+				statement.close();
+			} catch (SQLException e) {
+				throw new ErroAoExecutarOperacaoException("Erro na conexão", e.getMessage());
+			}
 
+		}
+		
+		return chaveGerada;
 	}
 
 	@Override
 	public void update(T entity) {
 
+
+		PreparedStatement stmt = null;
 		try {
 			String sql = genericSQL.getSqlUpdate(descricaoTabela);
-			
-			PreparedStatement stmt = connection
+			stmt = connection
 					.prepareStatement(sql);
 			int index = 1;
 			FuncoesReflection reflection = new FuncoesReflection();
@@ -105,11 +116,15 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 							descricaoTabela.getColunaChave(), entity));
 
 			stmt.execute();
-			stmt.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("ALterar dados da entidade", e.getMessage());
+		}finally{
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				throw new ErroAoExecutarOperacaoException("Erro na conexão", e.getMessage());
+			}
 		}
 
 	}
@@ -160,23 +175,18 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 				return null;
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Buscar entidade", e.getMessage());
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Classe não encontrada, erro no mapeamento xml", e.getMessage());
 		} finally {
 			try {
 				resultSet.close();
 				stmt.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new ErroAoExecutarOperacaoException("Erro na conexão", e.getMessage());
 			}
 
 		}
-
-		return null;
 	}
 
 	@Override
@@ -186,9 +196,11 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 		sql.append("DELETE FROM ").append(descricaoTabela.getNomeTabela())
 				.append(" where ").append(descricaoTabela.getColunaChave())
 				.append(" = ?");
-
+		
+		PreparedStatement stmt = null;
+		
 		try {
-			PreparedStatement stmt = connection
+			stmt = connection
 					.prepareStatement(sql.toString());
 
 			FuncoesReflection reflection = new FuncoesReflection();
@@ -197,11 +209,15 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 			stmt.setObject(1, id);
 			stmt.execute();
 
-			stmt.close();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Remover entidade", e.getMessage());
+		}finally{
+			try {
+				stmt.close();
+			} catch (SQLException e) {
+				throw new ErroAoExecutarOperacaoException("Erro na conexão", e.getMessage());
+			}
 		}
 
 	}

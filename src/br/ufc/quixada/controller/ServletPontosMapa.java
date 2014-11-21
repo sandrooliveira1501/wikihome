@@ -14,6 +14,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import br.ufc.quixada.dao.LocalDao;
 import br.ufc.quixada.dao.jdbc.LocalJDBCDAO;
+import br.ufc.quixada.model.DescricaoLocal;
 import br.ufc.quixada.model.Local;
 
 /**
@@ -41,12 +42,12 @@ public class ServletPontosMapa extends HttpServlet {
 			for (Local local : lista) {
 				
 				JSONObject objeto = new JSONObject();				
-				objeto.put("id", local.getId());
+				objeto.put("id", local.getIdLocal());
 				objeto.put("latitude", local.getLatitude());
 				objeto.put("longitude", local.getLongitude());
 				objeto.put("endereco", local.getEndereco());
-				//DescricaoLocal descricao = local.getDescricao();
-				//objeto.put("tipo", descricao.getTipo());
+				DescricaoLocal descricao = local.getDescricao();
+				objeto.put("tipo", descricao.getTipo());
 				array.add(objeto);
 			}
 			

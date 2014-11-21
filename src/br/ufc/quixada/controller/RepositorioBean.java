@@ -87,11 +87,11 @@ public class RepositorioBean {
 		comentario = new Comentario();
 		
 	    try {
-			FacesContext.getCurrentInstance().getExternalContext().redirect("coments.xhtml?id=" + local.getId());
+			FacesContext.getCurrentInstance().getExternalContext().redirect("coments.xhtml?id=" + local.getIdLocal());
 			return "";
 	    } catch (IOException e) {
 			e.printStackTrace();
-			return "?faces-redirect=true&includeViewParams=true&id=" + local.getId();
+			return "?faces-redirect=true&includeViewParams=true&id=" + local.getIdLocal();
 		}   
 		
 	}
@@ -105,16 +105,16 @@ public class RepositorioBean {
 				.getCurrentInstance().getExternalContext().getRequest();
 		
 		int id = Integer.parseInt(request.getParameter("idComentario"));
-		comentario.setId(id);
+		comentario.setIdComentario(id);
 		
 		comentarioDao.delete(comentario);
 		
 		 try {
-				FacesContext.getCurrentInstance().getExternalContext().redirect("coments.xhtml?id=" + local.getId());
+				FacesContext.getCurrentInstance().getExternalContext().redirect("coments.xhtml?id=" + local.getIdLocal());
 				return "";
 		    } catch (IOException e) {
 				e.printStackTrace();
-				return "?faces-redirect=true&includeViewParams=true&id=" + local.getId();
+				return "?faces-redirect=true&includeViewParams=true&id=" + local.getIdLocal();
 			}  
 	}
 	

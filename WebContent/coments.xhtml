@@ -27,33 +27,33 @@
 				</div>
 				<div class="panel-body">
 					<p>
-						<strong>Tipo :</strong> #{repositorioBean.local.tipo}
+						<strong>Tipo :</strong> #{repositorioBean.local.descricao.tipo}
 					</p>
 					<p>
-						<strong>Preço Médio:</strong> R$#{repositorioBean.local.preco}
+						<strong>Preço Médio:</strong> R$#{repositorioBean.local.descricao.preco}
 					</p>
 					<p>
 						<strong>E-mail para contato :</strong>
-						#{repositorioBean.local.emailContato}
+						#{repositorioBean.local.descricao.emailContato}
 					</p>
 					<p>
 						<strong>Telefone para Contato :</strong>
-						#{repositorioBean.local.telefoneContato}
+						#{repositorioBean.local.descricao.telefoneContato}
 					</p>
 					<p>
 						<strong>Quantidade de Quartos:</strong>
-						#{repositorioBean.local.qtdQuartos}
+						#{repositorioBean.local.descricao.qtdQuartos}
 					</p>
 					<p>
 						<strong>Quantidade de Banheiros:</strong>
-						#{repositorioBean.local.banheiros}
+						#{repositorioBean.local.descricao.banheiros}
 					</p>
 					<p>
-						<strong>Garagem: </strong>#{repositorioBean.local.garagem?'Possui
+						<strong>Garagem: </strong>#{repositorioBean.local.descricao.garagem?'Possui
 						Garagem':'Não possui Garagem'}
 					</p>
 					<p>
-						<strong>Quintal: </strong>#{repositorioBean.local.quintal?'Possui
+						<strong>Quintal: </strong>#{repositorioBean.local.descricao.quintal?'Possui
 						Quintal':'Não possui Quintal'}
 					</p>
 				</div>
@@ -73,7 +73,7 @@
 									
 									<h:commandLink rendered="#{(comentario.usuario.idUsuario == usuario.idUsuario)}" 
 									class="glyphicon glyphicon-remove" action="#{repositorioBean.removerComentario}">
-										<f:param name="idComentario" value="#{comentario.id}"></f:param>
+										<f:param name="idComentario" value="#{comentario.idComentario}"></f:param>
 									</h:commandLink>
 									#{comentario.texto}
 									<span class="badge" style="margin-right: initial">#{comentario.usuario.nome}</span>
@@ -113,7 +113,7 @@
 					</script>
 
 					<div class="fb-comments"
-						data-href="http://200.129.39.123/coments.xhtml?local=#{repositorioBean.local.id}"
+						data-href="http://200.129.39.123/coments.xhtml?local=#{repositorioBean.local.idLocal}"
 						data-width="500px" data-numposts="5" data-colorscheme="light"></div> -->
 
 				</div>

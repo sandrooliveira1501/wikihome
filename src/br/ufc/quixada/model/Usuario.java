@@ -1,6 +1,5 @@
 package br.ufc.quixada.model;
 
-import br.ufc.quixada.util.SenhaCriptografada;
 
 public class Usuario {
 

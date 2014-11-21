@@ -1,4 +1,4 @@
-package br.ufc.quixada.util;
+package br.ufc.quixada.model;
 
 import java.math.BigInteger;
 import java.security.MessageDigest;

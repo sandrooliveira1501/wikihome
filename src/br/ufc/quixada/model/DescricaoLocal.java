@@ -3,7 +3,7 @@ package br.ufc.quixada.model;
 
 public class DescricaoLocal {
 
-	private long id;
+	private long idDescricao;
 
 	private String tipo;
 	private double preco;
@@ -15,12 +15,12 @@ public class DescricaoLocal {
 	private String emailContato;
 	private String telefoneContato;
 
-	public long getId() {
-		return id;
+	public long getIdDescricao() {
+		return idDescricao;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setIdDescricao(long id) {
+		this.idDescricao = id;
 	}
 
 	public String getTipo() {
@@ -99,7 +99,7 @@ public class DescricaoLocal {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (id ^ (id >>> 32));
+		result = prime * result + (int) (idDescricao ^ (idDescricao >>> 32));
 		return result;
 	}
 
@@ -112,7 +112,7 @@ public class DescricaoLocal {
 		if (getClass() != obj.getClass())
 			return false;
 		DescricaoLocal other = (DescricaoLocal) obj;
-		if (id != other.id)
+		if (idDescricao != other.idDescricao)
 			return false;
 		return true;
 	}

@@ -2,17 +2,17 @@ package br.ufc.quixada.model;
 
 public class Comentario {
 
-	private long id;
+	private long idComentario;
 	private String texto;
 	private Local local;
 	private Usuario usuario;
 
-	public long getId() {
-		return id;
+	public long getIdComentario() {
+		return idComentario;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setIdComentario(long id) {
+		this.idComentario = id;
 	}
 
 	public String getTexto() {

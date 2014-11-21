@@ -8,6 +8,7 @@ import java.util.List;
 
 import br.ufc.quixada.config.LoaderDescricaoTabelas;
 import br.ufc.quixada.dao.ComentarioDao;
+import br.ufc.quixada.dao.jdbc.exception.ErroAoExecutarOperacaoException;
 import br.ufc.quixada.model.Comentario;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
@@ -28,7 +29,7 @@ public class ComentarioJDBCDAO extends GenericJDBCDao<Comentario> implements Com
 		StringBuilder sql = new StringBuilder();
 		sql.append("select * from Comentario c ");
 		sql.append("inner join Usuario u on u.idUsuario = c.id_usuario ");
-		sql.append("inner join Local l on l.id = c.id_local ");
+		sql.append("inner join Local l on l.idLocal = c.id_local ");
 		sql.append("where c.id_local = ?");
 		
 		PreparedStatement stmt = null;
@@ -36,7 +37,7 @@ public class ComentarioJDBCDAO extends GenericJDBCDao<Comentario> implements Com
 		
 		try {
 			stmt = connection.prepareStatement(sql.toString());
-			stmt.setLong(1, local.getId());
+			stmt.setLong(1, local.getIdLocal());
 			
 			resultSet = stmt.executeQuery();
 			
@@ -61,13 +62,13 @@ public class ComentarioJDBCDAO extends GenericJDBCDao<Comentario> implements Com
 			}
 			
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Pegar comentários por local", e.getMessage());
 		}finally{
 			try {
 				stmt.close();
 				resultSet.close();;
 			} catch (SQLException e) {
-				e.printStackTrace();
+				throw new ErroAoExecutarOperacaoException("Erro na conexão", e.getMessage());
 			}
 		}
 		
