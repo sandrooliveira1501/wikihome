@@ -227,7 +227,8 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 		try {
 			connection.setAutoCommit(false);
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Erro transação", e.getMessage());
+
 		}
 	}
 
@@ -236,7 +237,7 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 		try {
 			connection.commit();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Erro commit", e.getMessage());
 		}
 	}
 
@@ -245,7 +246,7 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 		try {
 			connection.rollback();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Erro rollback", e.getMessage());
 		}
 	}
 
@@ -254,7 +255,7 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 		try {
 			connection.close();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			throw new ErroAoExecutarOperacaoException("Erro ao fechar conexão", e.getMessage());
 		}
 	}
 

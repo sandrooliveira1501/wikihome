@@ -1,6 +1,8 @@
 package br.ufc.quixada.filter;
 
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.SQLException;
 
 import javax.servlet.Filter;
 import javax.servlet.FilterChain;
@@ -10,21 +12,20 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import br.ufc.quixada.model.Usuario;
+import br.ufc.quixada.dao.jdbc.ConnectionFactory;
+import br.ufc.quixada.dao.jdbc.exception.ErroAoExecutarOperacaoException;
 
 /**
  * Servlet Filter implementation class FilterLogin
  */
-@WebFilter("/*")
-public class FilterLogin implements Filter {
+@WebFilter("/filter")
+public class ConnectionFilter implements Filter {
 
     /**
      * Default constructor. 
      */
-    public FilterLogin() {
+    public ConnectionFilter() {
         // TODO Auto-generated constructor stub
     }
 
@@ -39,27 +40,21 @@ public class FilterLogin implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest) request;
-		req.setCharacterEncoding("UTF-8");
-		HttpServletResponse resp = (HttpServletResponse) response;
-		String uri = req.getRequestURI();
-		HttpSession session = req.getSession(false);
-		String contextPath = req.getContextPath();
 		
-
-		if (uri.contains("/user/")) {
-			if (session != null) {
-				Usuario user = (Usuario) session.getAttribute("usuario");
-				if (user == null) {
-					resp.sendRedirect(contextPath + "/index.xhtml");
-				} else {
-					chain.doFilter(request, response);
-				}
-			} else {
-				resp.sendRedirect(contextPath + "/index.xhtml");
-			}
-		} else {
+		String uri = ((HttpServletRequest) request).getRequestURI();
+		if (uri.contains("javax.faces.resource") || uri.matches(".+\\.(jpg|gif|png|xhtml)")) {
 			chain.doFilter(request, response);
+		} else{
+			Connection connection = ConnectionFactory.getConnection();
+			System.out.println("Abrindo conexão");
+			chain.doFilter(request, response);	
+			try {
+				connection.close();
+			} catch (SQLException e) {
+				throw new ErroAoExecutarOperacaoException("Fechar conexão", e.getMessage());
+			}	
+			System.out.println("conexão fechada");
+			
 		}
 		
 	}
