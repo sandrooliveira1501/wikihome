@@ -11,7 +11,6 @@ import br.ufc.quixada.config.ChaveEstrangeira;
 import br.ufc.quixada.config.DescricaoTabela;
 import br.ufc.quixada.config.FuncoesReflection;
 import br.ufc.quixada.config.LoaderDescricaoTabelas;
-import br.ufc.quixada.config.MontadorObjeto;
 import br.ufc.quixada.dao.GenericDao;
 
 public class GenericJDBCDao<T> implements GenericDao<T> {
@@ -43,7 +42,7 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 			List<ChaveEstrangeira> chavesEstrangeiras = descricaoTabela
 					.getChavesEstrangeiras();
 
-			PreparedStatement statement = connection.prepareStatement(sql);
+			PreparedStatement statement = connection.prepareStatement(sql, PreparedStatement.RETURN_GENERATED_KEYS);
 			int index = 1;
 			FuncoesReflection reflection = new FuncoesReflection();
 
@@ -66,6 +65,12 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 				index++;
 			}
 
+			/*ResultSet keyResultSet = statement.getGeneratedKeys();
+	        if (keyResultSet.next()) {
+	        	int idEntidade = (int) keyResultSet.getInt(1);
+	        	System.out.println(idEntidade);
+	        }*/
+			System.out.println(statement);
 			statement.execute();
 			statement.close();
 

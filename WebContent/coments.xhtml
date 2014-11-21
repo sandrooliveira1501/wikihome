@@ -61,7 +61,38 @@
 			<div class="panel panel-black">
 				<div class="panel-body">
 
-					<div id="fb-root"></div>
+					<div class="panel panel-default">
+						<div class="panel-heading">Comentários</div>
+						<ul class="list-group">
+							<ui:repeat var="comentario"
+								value="#{repositorioBean.comentarios}">
+
+					
+								<li class="list-group-item">
+									#{comentario.texto}
+									<span class="badge" style="margin-right: initial">#{comentario.usuario.nome}</span>
+								</li>
+
+							</ui:repeat>
+						</ul>
+					</div>
+
+					<h:form rendered="${usuario != null}">
+
+						<h:outputLabel for="comentario" value="Adicione um comentário" />
+
+						<h:inputTextarea class="form-control"
+							value="#{repositorioBean.comentario.texto}" id="comentario"
+							required="true" requiredMessage="Adicione texto ao comentário" />
+
+						<h:commandButton
+							style="margin-right: initial;margin-top: 10px;width:150px"
+							value="Comentar" action="#{repositorioBean.adicionarComentario}"
+							class="btn btn-primary" />
+
+					</h:form>
+
+					<!-- <div id="fb-root"></div>
 					<script>
 						(function(d, s, id) {
 							var js, fjs = d.getElementsByTagName(s)[0];
@@ -76,7 +107,7 @@
 
 					<div class="fb-comments"
 						data-href="http://200.129.39.123/coments.xhtml?local=#{repositorioBean.local.id}"
-						data-width="500px" data-numposts="5" data-colorscheme="light"></div>
+						data-width="500px" data-numposts="5" data-colorscheme="light"></div> -->
 
 				</div>
 			</div>

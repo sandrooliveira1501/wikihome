@@ -1,11 +1,11 @@
 package br.ufc.quixada.model;
 
-
 public class Comentario {
 
 	private long id;
 	private String texto;
 	private Local local;
+	private Usuario usuario;
 
 	public long getId() {
 		return id;
@@ -29,6 +29,14 @@ public class Comentario {
 
 	public void setLocal(Local local) {
 		this.local = local;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 }

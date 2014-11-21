@@ -30,6 +30,11 @@
 				<nomeAtributo>local</nomeAtributo>
 				<nomeClasseAtributo>br.ufc.quixada.model.Local</nomeClasseAtributo>			
 			</ChaveEstrangeira>
+			<ChaveEstrangeira>
+				<nomeChave>id_usuario</nomeChave>
+				<nomeAtributo>usuario</nomeAtributo>
+				<nomeClasseAtributo>br.ufc.quixada.model.Usuario</nomeClasseAtributo>			
+			</ChaveEstrangeira>
 		</chavesEstrangeiras>
 	</DescricaoTabela>
 	
