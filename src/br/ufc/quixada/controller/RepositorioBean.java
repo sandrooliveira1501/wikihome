@@ -96,6 +96,28 @@ public class RepositorioBean {
 		
 	}
 
+	public String removerComentario(){
+		
+		ComentarioDao comentarioDao = new ComentarioJDBCDAO();
+		
+		Comentario comentario = new Comentario();
+		HttpServletRequest request = (HttpServletRequest) FacesContext
+				.getCurrentInstance().getExternalContext().getRequest();
+		
+		int id = Integer.parseInt(request.getParameter("idComentario"));
+		comentario.setId(id);
+		
+		comentarioDao.delete(comentario);
+		
+		 try {
+				FacesContext.getCurrentInstance().getExternalContext().redirect("coments.xhtml?id=" + local.getId());
+				return "";
+		    } catch (IOException e) {
+				e.printStackTrace();
+				return "?faces-redirect=true&includeViewParams=true&id=" + local.getId();
+			}  
+	}
+	
 	public void carregarLocal() {
 
 		HttpServletRequest request = (HttpServletRequest) FacesContext

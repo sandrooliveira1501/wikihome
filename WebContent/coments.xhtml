@@ -68,10 +68,17 @@
 								value="#{repositorioBean.comentarios}">
 
 					
+								<h:form>
 								<li class="list-group-item">
+									
+									<h:commandLink rendered="#{(comentario.usuario.idUsuario == usuario.idUsuario)}" 
+									class="glyphicon glyphicon-remove" action="#{repositorioBean.removerComentario}">
+										<f:param name="idComentario" value="#{comentario.id}"></f:param>
+									</h:commandLink>
 									#{comentario.texto}
 									<span class="badge" style="margin-right: initial">#{comentario.usuario.nome}</span>
 								</li>
+								</h:form>
 
 							</ui:repeat>
 						</ul>
@@ -85,7 +92,7 @@
 							value="#{repositorioBean.comentario.texto}" id="comentario"
 							required="true" requiredMessage="Adicione texto ao comentário" />
 
-						<h:commandButton
+						<h:commandLink
 							style="margin-right: initial;margin-top: 10px;width:150px"
 							value="Comentar" action="#{repositorioBean.adicionarComentario}"
 							class="btn btn-primary" />
@@ -135,6 +142,9 @@
 
 
 	<ui:define name="footer">
+	
+				<br />
+				<br />
 		<div class="navbar navbar-default navbar-fixed-bottom">
 			<div class="container">
 				<p class="navbar-text pull-left">Desenvolvido por Alexsandro
