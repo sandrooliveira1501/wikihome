@@ -8,9 +8,11 @@
 			<colunaChave>idUsuario</colunaChave>
 			<colunas>
 				<String>email</String>
+				<String>nome</String>
 				<String>senha</String>
-				<String>adm</String>
 				<String>senhaTemporaria</String>
+				<String>endereco</String>
+				<String>cidade</String>
 			</colunas>
 			
 		</DescricaoTabela>

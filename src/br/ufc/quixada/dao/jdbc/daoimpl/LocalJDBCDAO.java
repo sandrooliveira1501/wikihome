@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufc.quixada.config.LoaderDescricaoTabelas;
 import br.ufc.quixada.dao.LocalDao;
 import br.ufc.quixada.dao.jdbc.descricao.DescricaoTabela;
-import br.ufc.quixada.dao.jdbc.descricao.LoaderDescricaoTabelas;
 import br.ufc.quixada.dao.jdbc.descricao.MontadorObjeto;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
@@ -28,7 +28,7 @@ public class LocalJDBCDAO extends GenericJDBCDao<Local> implements LocalDao{
 		
 		StringBuilder sql = new StringBuilder();
 		//TODO mudar nome de chave no banco
-		sql.append("select * from Local l inner join Usuario u on u.idUsuario = l.is_usuario where u.idUsuario = ?");
+		sql.append("select * from Local l inner join Usuario u on u.idUsuario = l.id_usuario");
 
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;
@@ -54,12 +54,10 @@ public class LocalJDBCDAO extends GenericJDBCDao<Local> implements LocalDao{
 				stmt.close();
 				resultSet.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-	
-		
+
 		return locais;
 	}
 

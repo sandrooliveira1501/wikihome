@@ -1,25 +1,14 @@
 package br.ufc.quixada.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
-@Entity
 public class Local {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	private Usuario usuario;
+	private DescricaoLocal descricao;
 	private String endereco;
 	private String latitude;
 	private String longitude;
-	@ManyToOne
-	@JoinColumn(name = "is_usuario")
-	private Usuario usuario;
 	private String tipo;
 	private double preco;
 	private int qtdQuartos;
@@ -140,6 +129,14 @@ public class Local {
 
 	public void setTelefoneContato(String telefoneContato) {
 		this.telefoneContato = telefoneContato;
+	}
+
+	public DescricaoLocal getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(DescricaoLocal descricao) {
+		this.descricao = descricao;
 	}
 
 	@Override

@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import br.ufc.quixada.dao.LocalDao;
-import br.ufc.quixada.dao.jpa.LocalJPADao;
+import br.ufc.quixada.dao.jdbc.daoimpl.LocalJDBCDAO;
 import br.ufc.quixada.model.Local;
 
 /**
@@ -34,11 +34,10 @@ public class ServletPontosMapa extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		LocalDao dao = new LocalJPADao();
+		LocalDao dao = new LocalJDBCDAO();
 		List<Local> lista = dao.getLocais();
 		
 			array = new JSONArray();
-			System.out.println(lista);
 			for (Local local : lista) {
 				
 				JSONObject objeto = new JSONObject();				
@@ -46,9 +45,10 @@ public class ServletPontosMapa extends HttpServlet {
 				objeto.put("latitude", local.getLatitude());
 				objeto.put("longitude", local.getLongitude());
 				objeto.put("endereco", local.getEndereco());
-				objeto.put("tipo", local.getTipo());
+				objeto.put("endereco", local.getDescricao());
+				//DescricaoLocal descricao = local.getDescricao();
+				//objeto.put("tipo", descricao.getTipo());
 				array.add(objeto);
-				
 			}
 			
 			PrintWriter out = response.getWriter();

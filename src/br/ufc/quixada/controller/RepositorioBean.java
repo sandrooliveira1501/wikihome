@@ -8,7 +8,7 @@ import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpServletRequest;
 
 import br.ufc.quixada.dao.LocalDao;
-import br.ufc.quixada.dao.jpa.LocalJPADao;
+import br.ufc.quixada.dao.jdbc.daoimpl.LocalJDBCDAO;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
 
@@ -47,14 +47,6 @@ public class RepositorioBean {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
-		if (this.usuario.getEndereco() == null)
-			this.usuario.setEndereco("Clique para adicionar");
-		if (this.usuario.getCidade() == null)
-			this.usuario.setCidade("Clique para adicionar");
-		if (this.usuario.getProfissao() == null)
-			this.usuario.setProfissao("Clique para adicionar");
-		if (this.usuario.getEmpresa() == null)
-			this.usuario.setEmpresa("Clique para adicionar");
 	}
 
 	public boolean emptyList(List lista) {
@@ -68,7 +60,7 @@ public class RepositorioBean {
 		long id;
 		if (request.getParameter("id") != null) {
 			id = Long.parseLong(request.getParameter("id"));
-			LocalDao localDao = new LocalJPADao();
+			LocalDao localDao = new LocalJDBCDAO();
 			this.local = localDao.find(id);
 		}
 	}

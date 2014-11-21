@@ -5,10 +5,9 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceException;
-import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.dao.UsuarioDao;
-import br.ufc.quixada.dao.jpa.UsuarioJPADao;
+import br.ufc.quixada.dao.jdbc.daoimpl.UsuarioJDBCDAO;
 import br.ufc.quixada.model.Usuario;
 
 @ManagedBean
@@ -49,7 +48,7 @@ public class PerfilBean {
 
 	public String alterarPerfil() {
 
-		UsuarioDao dao = new UsuarioJPADao();
+		UsuarioDao dao = new UsuarioJDBCDAO();
 
 		try {
 			dao.update(repositorio.getUsuario());
@@ -68,7 +67,7 @@ public class PerfilBean {
 
 	public String alterarSenha() {
 
-		UsuarioDao dao = new UsuarioJPADao();
+		UsuarioDao dao = new UsuarioJDBCDAO();
 
 		try {
 			usuario.setEmail(repositorio.getUsuario().getEmail());

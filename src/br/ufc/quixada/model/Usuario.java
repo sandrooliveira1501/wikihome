@@ -1,39 +1,18 @@
 package br.ufc.quixada.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
 import br.ufc.quixada.util.SenhaCriptografada;
 
-@Entity
 public class Usuario {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idUsuario;
-	@Column(unique = true)
 	private String email;
 	private String senha;
 	private String senhaTemporaria;
 	private String nome;
-	private String endereco;
-	private String cidade;
-	private String empresa;
-	private String profissao;
-	private boolean adm = false;
-	private boolean contaCriada = false;
+	private String endereco = "Sem endereço";
+	private String cidade = "Sem cidade";
 
 	public Usuario() {
-	}
-
-	public Usuario(long idUsuario, String email, String senha) {
-		this.idUsuario = idUsuario;
-		this.email = email;
-		this.senha = senha;
 	}
 
 	public long getIdUsuario() {
@@ -60,14 +39,6 @@ public class Usuario {
 		this.senha = SenhaCriptografada.md5(senha);
 	}
 
-	public boolean isAdm() {
-		return adm;
-	}
-
-	public void setAdm(boolean adm) {
-		this.adm = adm;
-	}
-
 	public String getNome() {
 		return nome;
 	}
@@ -92,36 +63,13 @@ public class Usuario {
 		this.cidade = cidade;
 	}
 
-	public String getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(String empresa) {
-		this.empresa = empresa;
-	}
-
-	public String getProfissao() {
-		return profissao;
-	}
-
-	public void setProfissao(String profissao) {
-		this.profissao = profissao;
-	}
-
-	public boolean isContaCriada() {
-		return contaCriada;
-	}
-
-	public void setContaCriada(boolean contaCriada) {
-		this.contaCriada = contaCriada;
-	}
-
 	public String getSenhaTemporaria() {
 		return senhaTemporaria;
 	}
 
 	public void setSenhaTemporaria(String senhaTemporaria) {
-		this.senhaTemporaria = SenhaCriptografada.md5(senhaTemporaria);;
+		this.senhaTemporaria = SenhaCriptografada.md5(senhaTemporaria);
+		;
 	}
 
 	@Override

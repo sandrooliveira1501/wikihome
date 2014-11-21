@@ -1,6 +1,5 @@
 package br.ufc.quixada.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.faces.application.FacesMessage;
@@ -11,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.dao.LocalDao;
-import br.ufc.quixada.dao.jpa.LocalJPADao;
+import br.ufc.quixada.dao.jdbc.daoimpl.LocalJDBCDAO;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
 
@@ -25,7 +24,7 @@ public class LocalBean {
 	public LocalBean() {
 		HttpSession session = (HttpSession)FacesContext.getCurrentInstance().getExternalContext().getSession(true);
 		Usuario usuario = (Usuario)session.getAttribute("usuario");
-		LocalDao dao = new LocalJPADao();
+		LocalDao dao = new LocalJDBCDAO();
 		locais = dao.getLocalPorUsuario(usuario);
 	}
 
@@ -53,7 +52,7 @@ public class LocalBean {
 
 			long id = Long.parseLong(request.getParameter("idLocal"));
 
-			LocalDao dao = new LocalJPADao();
+			LocalDao dao = new LocalJDBCDAO();
 			Local local = dao.find(id);
 			dao.delete(local);
 			locais.remove(local);

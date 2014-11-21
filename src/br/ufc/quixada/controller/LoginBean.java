@@ -8,7 +8,7 @@ import javax.persistence.PersistenceException;
 import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.dao.UsuarioDao;
-import br.ufc.quixada.dao.jpa.UsuarioJPADao;
+import br.ufc.quixada.dao.jdbc.daoimpl.UsuarioJDBCDAO;
 import br.ufc.quixada.model.Usuario;
 import br.ufc.quixada.util.Email;
 
@@ -16,7 +16,7 @@ import br.ufc.quixada.util.Email;
 public class LoginBean {
 
 	private final String EMAIL = "wikiape@gmail.com";
-	
+
 	private Usuario usuario;
 
 	@ManagedProperty(value = "#{repositorioBean}")
@@ -44,7 +44,7 @@ public class LoginBean {
 
 	public String autentica() {
 
-		UsuarioDao userDao = new UsuarioJPADao();
+		UsuarioDao userDao = new UsuarioJDBCDAO();
 		String retorno = "";
 
 		Usuario user = userDao.autenticaUser(usuario);
@@ -57,13 +57,8 @@ public class LoginBean {
 		} else {
 			HttpSession session = (HttpSession) FacesContext
 					.getCurrentInstance().getExternalContext().getSession(true);
-			if (user.isContaCriada()) {
-				retorno = "/index?faces-redirect=true";
-			} else {
-				retorno = "/user/index?faces-redirect=true";
-				user.setContaCriada(true);
-				userDao.update(user);
-			}
+			
+			retorno = "/user/index?faces-redirect=true";
 			session.setAttribute("usuario", user);
 			session.setAttribute("logado", true);
 
@@ -77,19 +72,8 @@ public class LoginBean {
 
 		try {
 
-			UsuarioDao userDao = new UsuarioJPADao();
+			UsuarioDao userDao = new UsuarioJDBCDAO();
 			userDao.save(usuario);
-			/*
-			 * usuario = userDao.autenticaUser(usuario);
-			 * 
-			 * HttpSession session = (HttpSession) FacesContext
-			 * .getCurrentInstance().getExternalContext().getSession(true);
-			 * 
-			 * session.setAttribute("usuario", usuario);
-			 * session.setAttribute("logado", true);
-			 * 
-			 * repositorio.setUsuario(usuario);
-			 */
 
 			FacesContext.getCurrentInstance().addMessage(
 					null,
@@ -120,17 +104,21 @@ public class LoginBean {
 
 	}
 
-	public String mudarSenha(){
-		
-		UsuarioDao userDao = new UsuarioJPADao();
+	public String mudarSenha() {
+
+		UsuarioDao userDao = new UsuarioJDBCDAO();
 		String novaSenha = userDao.mudarSenha(usuario);
-		String mensagem = "Sua nova senha é : " + novaSenha + "\n\n\n" + ", Wiki Apê";
-		
+		String mensagem = "Sua nova senha é : " + novaSenha + "\n\n\n"
+				+ ", Wiki Apê";
+
 		Email.enviarEmail(EMAIL, usuario.getEmail(), "Nova Senha", mensagem);
-		
-		FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Recuperar Senha", "Sua nova senha foi mandada para seu e-mail")); 
-		
+
+		FacesContext.getCurrentInstance().addMessage(
+				null,
+				new FacesMessage("Recuperar Senha",
+						"Sua nova senha foi mandada para seu e-mail"));
+
 		return "?faces-redirect=true";
 	}
-	
+
 }

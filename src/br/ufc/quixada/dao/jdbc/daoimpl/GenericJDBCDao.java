@@ -6,14 +6,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
 
+import br.ufc.quixada.config.LoaderDescricaoTabelas;
 import br.ufc.quixada.dao.GenericDao;
 import br.ufc.quixada.dao.jdbc.ConnectionFactory;
 import br.ufc.quixada.dao.jdbc.descricao.ChaveEstrangeira;
 import br.ufc.quixada.dao.jdbc.descricao.DescricaoTabela;
-import br.ufc.quixada.dao.jdbc.descricao.LoaderDescricaoTabelas;
 import br.ufc.quixada.dao.jdbc.descricao.MontadorObjeto;
 import br.ufc.quixada.dao.jdbc.reflection.FuncoesReflection;
 
@@ -80,14 +78,12 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 
 				Object atributoChave = reflection.getAtributoEmObjeto(
 						chaveEstrangeira.getNomeAtributo(), entity);
-
 				DescricaoTabela descTabelaChave = new LoaderDescricaoTabelas()
 						.getDescricaoTabela(Class.forName(chaveEstrangeira
 								.getNomeClasseAtributo()));
 
 				statement.setObject(index, reflection.getAtributoEmObjeto(
 						descTabelaChave.getColunaChave(), atributoChave));
-
 				index++;
 			}
 
@@ -174,22 +170,22 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 
 			for (ChaveEstrangeira chaveEstrangeira : chavesEstrangeiras) {
 				DescricaoTabela descricaoChave = new LoaderDescricaoTabelas()
-						.getDescricaoTabela(Class.forName(chaveEstrangeira.getNomeClasseAtributo()));
-				
+						.getDescricaoTabela(Class.forName(chaveEstrangeira
+								.getNomeClasseAtributo()));
+
 				sql.append(" inner join ");
 				sql.append(descricaoChave.getNomeTabela());
-				sql.append(" on ").append(chaveEstrangeira.getNomeChave()).
-				append("=").append(descricaoChave.getColunaChave());
-				
+				sql.append(" on ").append(chaveEstrangeira.getNomeChave())
+						.append("=").append(descricaoChave.getColunaChave());
+
 			}
 
 			sql.append(" where ");
 			sql.append(descricaoTabela.getColunaChave());
 			sql.append(" = ?;");
 			System.out.println(sql.toString());
-			
-			stmt = connection
-					.prepareStatement(sql.toString());
+
+			stmt = connection.prepareStatement(sql.toString());
 			stmt.setObject(1, id);
 			resultSet = stmt.executeQuery();
 
@@ -198,15 +194,19 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 					funcoesReflection.setAtributoEmObjeto(coluna, instancia,
 							resultSet.getObject(coluna));
 				}
-				
+
 				for (ChaveEstrangeira chaveEstrangeira : chavesEstrangeiras) {
 					DescricaoTabela descricaoChave = new LoaderDescricaoTabelas()
-					.getDescricaoTabela(Class.forName(chaveEstrangeira.getNomeClasseAtributo()));
-			
+							.getDescricaoTabela(Class.forName(chaveEstrangeira
+									.getNomeClasseAtributo()));
+
 					MontadorObjeto montador = new MontadorObjeto();
-					Object objetoChave = montador.montarObjeto(descricaoChave, resultSet, descricaoChave.getNomeTabela());
-					funcoesReflection.setAtributoEmObjeto(chaveEstrangeira.getNomeAtributo(), instancia, objetoChave);
-					
+					Object objetoChave = montador.montarObjeto(descricaoChave,
+							resultSet, descricaoChave.getNomeTabela());
+					funcoesReflection.setAtributoEmObjeto(
+							chaveEstrangeira.getNomeAtributo(), instancia,
+							objetoChave);
+
 				}
 
 				return (T) instancia;
@@ -219,7 +219,7 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}finally{
+		} finally {
 			try {
 				resultSet.close();
 				stmt.close();
@@ -227,7 +227,7 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
+
 		}
 
 		return null;

@@ -1,20 +1,10 @@
 package br.ufc.quixada.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 
-@Entity
 public class Comentario {
 
-	@Id
-	@GeneratedValue
 	private long id;
 	private String texto;
-	@ManyToOne
-	@JoinColumn(name = "id_local")
 	private Local local;
 
 	public long getId() {

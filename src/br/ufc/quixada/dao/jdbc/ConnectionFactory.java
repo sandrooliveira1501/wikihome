@@ -14,9 +14,6 @@ public class ConnectionFactory {
 
 	private static ThreadLocal<Connection> repConnection = new ThreadLocal<Connection>();
 	
-	private static final EntityManagerFactory emf = Persistence
-			.createEntityManagerFactory("dev");
-
 	public static Connection getConnection() throws ErroAbrirConexaoException{
 		
 		Connection connection = repConnection.get();
@@ -40,10 +37,16 @@ public class ConnectionFactory {
 		
 		Connection connection;
 		try {
+			Class.forName("org.postgresql.Driver");
 			connection = DriverManager.getConnection(url,usuario,senha);
 			return connection;
 		} catch (SQLException e) {
+			e.printStackTrace();
 			throw new ErroAbrirConexaoException();
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+			throw new ErroAbrirConexaoException();
+
 		}
 		
 	}

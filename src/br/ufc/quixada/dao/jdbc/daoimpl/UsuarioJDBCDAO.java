@@ -22,18 +22,6 @@ public class UsuarioJDBCDAO extends GenericJDBCDao<Usuario> implements
 	}
 
 	@Override
-	public Usuario autenticaAdm(Usuario usuario) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Usuario userDefault() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public Usuario autenticaUser(Usuario usuario) {
 
 		StringBuilder sql = new StringBuilder();

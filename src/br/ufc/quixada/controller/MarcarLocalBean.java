@@ -9,8 +9,8 @@ import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.dao.LocalDao;
 import br.ufc.quixada.dao.UsuarioDao;
-import br.ufc.quixada.dao.jpa.LocalJPADao;
-import br.ufc.quixada.dao.jpa.UsuarioJPADao;
+import br.ufc.quixada.dao.jdbc.daoimpl.LocalJDBCDAO;
+import br.ufc.quixada.dao.jdbc.daoimpl.UsuarioJDBCDAO;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
 
@@ -43,7 +43,7 @@ public class MarcarLocalBean {
 
 	public String adicionarLocal() {
 
-		LocalDao localDao = new LocalJPADao();
+		LocalDao localDao = new LocalJDBCDAO();
 		HttpSession session = (HttpSession) FacesContext.getCurrentInstance()
 				.getExternalContext().getSession(true);
 		Usuario usuario = (Usuario) session.getAttribute("usuario");
@@ -60,7 +60,7 @@ public class MarcarLocalBean {
 			Usuario user = new Usuario();
 			user.setEmail("wikiape@gmail.com");
 			user.setSenha("qwe123");
-			UsuarioDao dao = new UsuarioJPADao();
+			UsuarioDao dao = new UsuarioJDBCDAO();
 			usuario = dao.autenticaUser(user);
 			if (usuario == null) {
 				dao.save(user);
