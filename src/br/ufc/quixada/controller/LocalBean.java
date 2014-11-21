@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import br.ufc.quixada.dao.LocalDao;
-import br.ufc.quixada.dao.jdbc.daoimpl.LocalJDBCDAO;
+import br.ufc.quixada.dao.jdbc.LocalJDBCDAO;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
 

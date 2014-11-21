@@ -1,4 +1,4 @@
-package br.ufc.quixada.dao.jdbc.daoimpl;
+package br.ufc.quixada.dao.jdbc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -1,4 +1,4 @@
-package br.ufc.quixada.dao.jdbc.daoimpl;
+package br.ufc.quixada.dao.jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,13 +13,13 @@ import br.ufc.quixada.config.FuncoesReflection;
 import br.ufc.quixada.config.LoaderDescricaoTabelas;
 import br.ufc.quixada.config.MontadorObjeto;
 import br.ufc.quixada.dao.GenericDao;
-import br.ufc.quixada.dao.jdbc.ConnectionFactory;
 
 public class GenericJDBCDao<T> implements GenericDao<T> {
 
 	protected Class persistenceClass;
 	protected DescricaoTabela descricaoTabela;
 	protected Connection connection;
+	private GenericSQL genericSQL;
 
 	public GenericJDBCDao(Class persistenceClass) {
 
@@ -28,43 +28,22 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 		this.descricaoTabela = loaderDescricao
 				.getDescricaoTabela(persistenceClass);
 		this.connection = ConnectionFactory.getConnection();
+		this.genericSQL = new GenericSQL();
 
 	}
 
 	@Override
 	public void save(T entity) {
 
-		StringBuilder sql = new StringBuilder();
-		Class classEntidade = entity.getClass();
-
-		List<String> colunas = descricaoTabela.getColunas();
-		List<ChaveEstrangeira> chavesEstrangeiras = descricaoTabela
-				.getChavesEstrangeiras();
-
-		sql.append("insert into ");
-		sql.append(descricaoTabela.getNomeTabela());
-		sql.append(" (");
-		for (String coluna : colunas) {
-			sql.append(coluna);
-			sql.append(",");
-		}
-		for (ChaveEstrangeira chaveEstrangeira : chavesEstrangeiras) {
-			sql.append(chaveEstrangeira.getNomeChave());
-			sql.append(",");
-		}
-		sql.deleteCharAt(sql.length() - 1);
-
-		sql.append(") values (");
-		for (int i = 0; i < (colunas.size() + chavesEstrangeiras.size()); i++) {
-			sql.append("?,");
-		}
-
-		sql.deleteCharAt(sql.length() - 1);
-		sql.append(");");
-
 		try {
-			PreparedStatement statement = connection.prepareStatement(sql
-					.toString());
+			Class classEntidade = entity.getClass();
+			String sql = genericSQL.getSqlSave(descricaoTabela);
+
+			List<String> colunas = descricaoTabela.getColunas();
+			List<ChaveEstrangeira> chavesEstrangeiras = descricaoTabela
+					.getChavesEstrangeiras();
+
+			PreparedStatement statement = connection.prepareStatement(sql);
 			int index = 1;
 			FuncoesReflection reflection = new FuncoesReflection();
 
@@ -102,28 +81,11 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 	@Override
 	public void update(T entity) {
 
-		List<String> colunas = descricaoTabela.getColunas();
-		List<ChaveEstrangeira> chavesEstrangeiras = descricaoTabela
-				.getChavesEstrangeiras();
-
-		StringBuilder sql = new StringBuilder();
-
-		sql.append("UPDATE ").append(descricaoTabela.getNomeTabela())
-				.append(" set ");
-
-		for (String coluna : descricaoTabela.getColunas()) {
-			sql.append(coluna);
-			sql.append("=?,");
-		}
-		sql.deleteCharAt(sql.length() - 1); // Remove vírgula que sobra
-
-		sql.append(" where ");
-		sql.append(descricaoTabela.getColunaChave());
-		sql.append(" = ?;");
-
 		try {
+			String sql = genericSQL.getSqlUpdate(descricaoTabela);
+			
 			PreparedStatement stmt = connection
-					.prepareStatement(sql.toString());
+					.prepareStatement(sql);
 			int index = 1;
 			FuncoesReflection reflection = new FuncoesReflection();
 			for (String coluna : descricaoTabela.getColunas()) {
@@ -155,36 +117,15 @@ public class GenericJDBCDao<T> implements GenericDao<T> {
 			FuncoesReflection funcoesReflection = new FuncoesReflection();
 			Object instancia = funcoesReflection.criarInstancia(descricaoTabela
 					.getNome());
-			StringBuilder sql = new StringBuilder();
 
 			List<String> colunas = new ArrayList<String>();
+			colunas.add(descricaoTabela.getColunaChave());
+			colunas.addAll(descricaoTabela.getColunas());
 			List<ChaveEstrangeira> chavesEstrangeiras = descricaoTabela
 					.getChavesEstrangeiras();
 
-			colunas.add(descricaoTabela.getColunaChave());
-			colunas.addAll(descricaoTabela.getColunas());
-
-			sql.append("select *");
-			sql.append(" from ");
-			sql.append(descricaoTabela.getNomeTabela());
-
-			for (ChaveEstrangeira chaveEstrangeira : chavesEstrangeiras) {
-				DescricaoTabela descricaoChave = new LoaderDescricaoTabelas()
-						.getDescricaoTabela(Class.forName(chaveEstrangeira
-								.getNomeClasseAtributo()));
-
-				sql.append(" inner join ");
-				sql.append(descricaoChave.getNomeTabela());
-				sql.append(" on ").append(chaveEstrangeira.getNomeChave())
-						.append("=").append(descricaoChave.getColunaChave());
-
-			}
-
-			sql.append(" where ");
-			sql.append(descricaoTabela.getColunaChave());
-			sql.append(" = ?;");
-			System.out.println(sql.toString());
-
+			String sql = genericSQL.getSqlFind(descricaoTabela);
+			
 			stmt = connection.prepareStatement(sql.toString());
 			stmt.setObject(1, id);
 			resultSet = stmt.executeQuery();

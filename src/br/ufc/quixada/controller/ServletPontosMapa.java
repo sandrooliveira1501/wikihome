@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import br.ufc.quixada.dao.LocalDao;
-import br.ufc.quixada.dao.jdbc.daoimpl.LocalJDBCDAO;
+import br.ufc.quixada.dao.jdbc.LocalJDBCDAO;
 import br.ufc.quixada.model.Local;
 
 /**

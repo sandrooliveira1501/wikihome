@@ -1,4 +1,4 @@
-package br.ufc.quixada.dao.jdbc.daoimpl;
+package br.ufc.quixada.dao.jdbc;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -68,7 +68,7 @@ public class LocalJDBCDAO extends GenericJDBCDao<Local> implements LocalDao{
 
 		StringBuilder sql = new StringBuilder();
 		//TODO mudar nome de chave no banco
-		sql.append("select * from Local l inner join Usuario u on u.idUsuario = l.is_usuario where u.idUsuario = ?");
+		sql.append("select * from Local l inner join Usuario u on u.idUsuario = l.id_usuario where u.idUsuario = ?");
 
 		PreparedStatement stmt = null;
 		ResultSet resultSet = null;

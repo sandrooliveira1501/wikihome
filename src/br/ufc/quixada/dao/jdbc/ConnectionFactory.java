@@ -29,7 +29,7 @@ public class ConnectionFactory {
 		
 	}
 
-	private static final String url = "jdbc:postgresql://localhost:5432/wikihome";
+	private static final String url = "jdbc:postgresql://localhost:5432/wikihomebd";
 	private static final String usuario= "postgres";
 	private static final String senha = "postgres";
 	

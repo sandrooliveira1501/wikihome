@@ -7,7 +7,7 @@ import javax.faces.context.FacesContext;
 import javax.persistence.PersistenceException;
 
 import br.ufc.quixada.dao.UsuarioDao;
-import br.ufc.quixada.dao.jdbc.daoimpl.UsuarioJDBCDAO;
+import br.ufc.quixada.dao.jdbc.UsuarioJDBCDAO;
 import br.ufc.quixada.model.Usuario;
 
 @ManagedBean
