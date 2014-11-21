@@ -1,4 +1,4 @@
-package br.ufc.quixada.dao.jdbc.reflection;
+package br.ufc.quixada.config;
 
 import java.lang.reflect.Field;
 

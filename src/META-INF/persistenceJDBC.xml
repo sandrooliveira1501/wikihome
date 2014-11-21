@@ -1,21 +1,65 @@
 <?xml version="1.0" ?>
 
-	<List>
+<List>
 
-		<DescricaoTabela>
-			<nome>br.ufc.quixada.model.Usuario</nome>
-			<nomeTabela>Usuario</nomeTabela>
-			<colunaChave>idUsuario</colunaChave>
-			<colunas>
-				<String>email</String>
-				<String>nome</String>
-				<String>senha</String>
-				<String>senhaTemporaria</String>
-				<String>endereco</String>
-				<String>cidade</String>
-			</colunas>
-			
-		</DescricaoTabela>
+	<DescricaoTabela>
+		<nome>br.ufc.quixada.model.Usuario</nome>
+		<nomeTabela>Usuario</nomeTabela>
+		<colunaChave>idUsuario</colunaChave>
+		<colunas>
+			<String>email</String>
+			<String>nome</String>
+			<String>senha</String>
+			<String>senhaTemporaria</String>
+			<String>endereco</String>
+			<String>cidade</String>
+		</colunas>
+		<chavesEstrangeiras></chavesEstrangeiras>
+	</DescricaoTabela>
 
-	</List>
+	<DescricaoTabela>
+		<nome>br.ufc.quixada.model.Comentario</nome>
+		<nomeTabela>Comentario</nomeTabela>
+		<colunaChave>id</colunaChave>
+		<colunas>
+			<String>texto</String>
+		</colunas>
+		<chavesEstrangeiras>
+			<ChaveEstrangeira>
+				<nomeChave>id_local</nomeChave>
+				<nomeAtributo>local</nomeAtributo>
+				<nomeClasseAtributo>br.ufc.quixada.model.Local</nomeClasseAtributo>			
+			</ChaveEstrangeira>
+		</chavesEstrangeiras>
+	</DescricaoTabela>
+	
+	<DescricaoTabela>
+		<nome>br.ufc.quixada.model.Local</nome>
+		<nomeTabela>Local</nomeTabela>
+		<colunaChave>id</colunaChave>
+		<colunas>
+			<String>endereco</String>
+			<String>latitude</String>
+			<String>longitude</String>
+			<String>tipo</String>
+			<String>preco</String>
+			<String>qtdQuartos</String>
+			<String>qtdApartamentos</String>
+			<String>garagem</String>
+			<String>quintal</String>
+			<String>banheiros</String>
+			<String>emailContato</String>
+			<String>telefoneContato</String>
+		</colunas>
+		<chavesEstrangeiras>
+			<ChaveEstrangeira>
+				<nomeChave>id_usuario</nomeChave>
+				<nomeAtributo>usuario</nomeAtributo>
+				<nomeClasseAtributo>br.ufc.quixada.model.Usuario</nomeClasseAtributo>			
+			</ChaveEstrangeira>
+		</chavesEstrangeiras>
+	</DescricaoTabela>
+
+
+</List>
 	

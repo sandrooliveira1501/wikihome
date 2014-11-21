@@ -7,13 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufc.quixada.config.ChaveEstrangeira;
+import br.ufc.quixada.config.DescricaoTabela;
+import br.ufc.quixada.config.FuncoesReflection;
 import br.ufc.quixada.config.LoaderDescricaoTabelas;
+import br.ufc.quixada.config.MontadorObjeto;
 import br.ufc.quixada.dao.GenericDao;
 import br.ufc.quixada.dao.jdbc.ConnectionFactory;
-import br.ufc.quixada.dao.jdbc.descricao.ChaveEstrangeira;
-import br.ufc.quixada.dao.jdbc.descricao.DescricaoTabela;
-import br.ufc.quixada.dao.jdbc.descricao.MontadorObjeto;
-import br.ufc.quixada.dao.jdbc.reflection.FuncoesReflection;
 
 public class GenericJDBCDao<T> implements GenericDao<T> {
 

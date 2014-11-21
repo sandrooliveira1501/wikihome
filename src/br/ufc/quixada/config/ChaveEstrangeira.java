@@ -1,4 +1,4 @@
-package br.ufc.quixada.dao.jdbc.descricao;
+package br.ufc.quixada.config;
 
 public class ChaveEstrangeira {
 

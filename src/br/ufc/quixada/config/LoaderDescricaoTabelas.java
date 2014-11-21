@@ -1,41 +1,65 @@
 package br.ufc.quixada.config;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
-import br.ufc.quixada.dao.LocalDao;
-import br.ufc.quixada.dao.jdbc.daoimpl.LocalJDBCDAO;
-import br.ufc.quixada.dao.jdbc.descricao.ChaveEstrangeira;
-import br.ufc.quixada.dao.jdbc.descricao.DescricaoTabela;
-import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
+
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 
 public class LoaderDescricaoTabelas {
 	
-	private Map<String,DescricaoTabela> descricaoTabelas;
+	private List<DescricaoTabela> descricaoTabelas;
+	private XStream stream;
+	
 	
 	public LoaderDescricaoTabelas(){
+		this.stream = new XStream(new DomDriver());
+	}
+	
+	private void configurarClassesParaAlias(){
+		stream.alias("DescricaoTabela", DescricaoTabela.class);
+		stream.alias("ChaveEstrangeira", ChaveEstrangeira.class);
+		stream.alias("String", String.class);
+		stream.alias("List", List.class);
+	}
+	
+	
+	private void carregarElementosXMLLista(){
 		
+		File file = new File(LoaderDescricaoTabelas.class.getResource("/META-INF/persistenceJDBC.xml").getPath());
+		
+		if(!file.exists()){
+			throw new RuntimeException("Erro ao abrir arquivo xml");
+		}
+		
+		try{
+			this.descricaoTabelas =  (ArrayList) stream.fromXML(file);
+		}catch(Exception e){
+			throw new RuntimeException("Erro ao ler XML");
+		}
+	}
+
+	private void carregarReader() {
+		configurarClassesParaAlias();
+		carregarElementosXMLLista();
 	}
 
 	public DescricaoTabela getDescricaoTabela(Class persistenceClass){
+		carregarReader();
+		carregarElementosXMLLista();
 		
-		DescricaoTabela d1 = new DescricaoTabela("br.ufc.quixada.model.Usuario", "usuario", "idUsuario","idUsuario", "nome", "senha","senhaTemporaria", "email");
-		DescricaoTabela d2 = new DescricaoTabela("br.ufc.quixada.model.Local", "local", "id","endereco", "latitude", "longitude","banheiros", "garagem", "quintal", "emailContato", "preco", "qtdQuartos", "qtdApartamentos", "telefoneContato", "tipo");
-		ChaveEstrangeira c = new ChaveEstrangeira();
-		c.setNomeChave("id_usuario");
-		c.setNomeAtributo("usuario");
-		c.setNomeClasseAtributo("br.ufc.quixada.model.Usuario");
-		List<ChaveEstrangeira> l = new ArrayList<ChaveEstrangeira>();
-		l.add(c);
-		d2.setChavesEstrangeiras(l);
-		
-		if(persistenceClass.getName().equals(Usuario.class.getName())){
-			return d1;
-		}else{
-			return d2;
+		for (DescricaoTabela descricaoTabela : descricaoTabelas) {
+			
+			if(descricaoTabela.getNome().equals(persistenceClass.getName())){
+				return descricaoTabela;
+			}
+			
 		}
+		
+		return null;
 		
 	}
 	

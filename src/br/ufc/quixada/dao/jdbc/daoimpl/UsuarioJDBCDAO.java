@@ -7,8 +7,8 @@ import java.util.Random;
 
 import javax.persistence.Query;
 
+import br.ufc.quixada.config.MontadorObjeto;
 import br.ufc.quixada.dao.UsuarioDao;
-import br.ufc.quixada.dao.jdbc.descricao.MontadorObjeto;
 import br.ufc.quixada.model.Usuario;
 
 public class UsuarioJDBCDAO extends GenericJDBCDao<Usuario> implements

@@ -1,11 +1,9 @@
-package br.ufc.quixada.dao.jdbc.descricao;
+package br.ufc.quixada.config;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import br.ufc.quixada.dao.jdbc.reflection.FuncoesReflection;
 
 public class MontadorObjeto <T>{
 	

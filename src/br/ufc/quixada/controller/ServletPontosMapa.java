@@ -45,7 +45,6 @@ public class ServletPontosMapa extends HttpServlet {
 				objeto.put("latitude", local.getLatitude());
 				objeto.put("longitude", local.getLongitude());
 				objeto.put("endereco", local.getEndereco());
-				objeto.put("endereco", local.getDescricao());
 				//DescricaoLocal descricao = local.getDescricao();
 				//objeto.put("tipo", descricao.getTipo());
 				array.add(objeto);

@@ -6,10 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.ufc.quixada.config.DescricaoTabela;
 import br.ufc.quixada.config.LoaderDescricaoTabelas;
+import br.ufc.quixada.config.MontadorObjeto;
 import br.ufc.quixada.dao.LocalDao;
-import br.ufc.quixada.dao.jdbc.descricao.DescricaoTabela;
-import br.ufc.quixada.dao.jdbc.descricao.MontadorObjeto;
 import br.ufc.quixada.model.Local;
 import br.ufc.quixada.model.Usuario;
 
