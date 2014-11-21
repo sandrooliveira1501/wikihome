@@ -20,15 +20,15 @@ CREATE TABLE local (
                 idLocal serial,
                 endereco VARCHAR(255),
                 latitude VARCHAR(255),
-                longitude VARCHAR(255) NULL,
-                id_descricao NUMERIC(20) NULL,
-                id_usuario NUMERIC(20) NULL
+                longitude VARCHAR(255),
+                id_descricao INTEGER,
+                id_usuario INTEGER
 );
 
 ALTER TABLE local ADD CONSTRAINT local_pkey
 PRIMARY KEY (idLocal);
 
-CREATE TABLE public.usuario (
+CREATE TABLE usuario (
                 idusuario serial NOT NULL,
                 cidade VARCHAR(255),
                 email VARCHAR(255),
@@ -42,13 +42,12 @@ ALTER TABLE usuario ADD CONSTRAINT usuario_pkey
 PRIMARY KEY (idusuario);
 
 CREATE TABLE comentario (
-                idComentario serial NOT NULL,
+		idcomentario integer,
                 texto VARCHAR(255),
                 id_local integer,
-				id_usuario integer,
-				constraint fk_localc foreign key(id_local) references local(idLocal),
-				constraint fk_localu foreign key(id_usuario) references usuario(idUsuario)
-					
+		id_usuario integer,
+		constraint fk_localc foreign key(id_local) references local(idLocal),
+		constraint fk_localu foreign key(id_usuario) references usuario(idUsuario) 
 );
 
 
@@ -58,7 +57,7 @@ PRIMARY KEY (idComentario);
 
 
 ALTER TABLE local ADD CONSTRAINT fk_descricao
-FOREIGN KEY (id_descricao)
+FOREIGN KEY (idlocal)
 REFERENCES public.descricaolocal (idDescricao);
 
 ALTER TABLE comentario ADD CONSTRAINT fk_comentario
